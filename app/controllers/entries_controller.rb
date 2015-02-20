@@ -31,6 +31,25 @@ class EntriesController < ApplicationController
     end
   end
 
+  def edit
+    @entry = Entry.find(params[:id])
+
+    render template: '/entries/update'
+  end
+
+  # The update method needs id of entry object to find the updated object.
+  def update
+    @entry = Entry.find(params[:id])
+
+    respond_to do |format|
+      if @entry.update(entry_params)
+        format.html { redirect_to "/entries/show/#{@entry.id}", notice: 'Entry was successfully updated.' }
+      else
+        format.html { render template: "/entries/edit/#{@entry.id}" }
+      end
+    end
+  end
+
   private
 
   def entry_params

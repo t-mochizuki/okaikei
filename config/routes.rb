@@ -9,6 +9,12 @@ Rails.application.routes.draw do
 
   post 'entries/create', to: 'entries#create'
 
+  get 'entries/edit/:id', to: 'entries#edit'
+
+  get 'entries/update'
+
+  patch 'entries/update', to: 'entries#update'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
