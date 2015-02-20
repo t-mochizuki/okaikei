@@ -10,5 +10,8 @@ class EntriesController < ApplicationController
   def destroy
     @entry = Entry.find(params[:id])
     @entry.destroy
+    respond_to do |format|
+      format.html { redirect_to '/entries/index' }
+    end
   end
 end
