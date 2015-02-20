@@ -14,6 +14,7 @@
       <tr>
         <td><%= entry.date %></td>
         <td><%= entry.comment %></td>
+        <td><%= link_to 'Show', "/entries/show/#{entry.id}" %></td>
       </tr>
     <% end %>
   </tbody>
