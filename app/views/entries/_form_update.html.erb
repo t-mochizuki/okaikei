@@ -1,0 +1,47 @@
+<%= nested_form_for(@entry, url: "/entries/update?id=#{@entry.id}") do |f| %>
+  <% if @entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% @entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br>
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.fields_for :debits do |debit| %>
+      <%= debit.label :name %>
+      <%= debit.text_field :name %>
+      <%= debit.label :money %>
+      <%= debit.number_field :money %>
+    <% end %>
+    <p>
+    <%= f.link_to_add "Add debit", :debits %>
+    </p>
+  </div>
+  <div class="field">
+    <%= f.fields_for :credits do |credit| %>
+      <%= credit.label :name %>
+      <%= credit.text_field :name %>
+      <%= credit.label :money %>
+      <%= credit.number_field :money %>
+    <% end %>
+    <p>
+    <%= f.link_to_add "Add credit", :credits %>
+    </p>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
