@@ -53,6 +53,6 @@ class EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:date, :comment)
+    params.require(:entry).permit(:date, :comment, debits_attributes: [:name, :money], credits_attributes: [:name, :money])
   end
 end
